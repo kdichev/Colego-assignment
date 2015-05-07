@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <title>assignment</title>
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script src="SpryData.js"></script>
+        <script src="SpryJSONDataSet.js"></script>
+        <script src="SpryNestedJSONDataSet.js"></script>
+        <script type="text/javascript">
+            var assignment = new Spry.Data.JSONDataSet("recipes.json", { path: "items.item", subPaths: [ "batters.batter", "topping" ] });
+        </script>
+
+        <style>
+th {
+    border-bottom: 1px solid #d6d6d6;
+}
+
+tr:nth-child(even) {
+    background: #e9e9e9;
+}
+
+.ui-table-columntoggle-btn{
+    display: none;
+}
+</style>
+    </head>
+
+    
+    <body>
+
+    <div class="liveSample" spry:region="assignment">
+    <table class="dataTable" data-role="table" data-mode="columntoggle" class="ui-responsive"   >
+        <thead>
+        <tr>
+            <th spry:sort="id"><span class="ui-icon ui-icon-arrowthick-1-n"></span>id</th>
+            <th spry:sort="type">type</th>
+            <th spry:sort="name">name</th>
+            <th spry:sort="batters.batter.type">batter</th>
+            <th spry:sort="topping.type">topping</th>
+        </tr>
+        </thead>
+    </tbody>
+        <tr spry:repeat="assignment">
+            <td>{id}</td>
+            <td>{type}</td>
+            <td>{name}</td>
+            <td>{batters.batter.type}</td>
+            <td>{topping.type}</td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+    
+    </body>
+
+</html>
